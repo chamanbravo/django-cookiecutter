@@ -1,0 +1,8 @@
+{
+  "full_name": "John Doe",
+  "github_username": "johndoe",
+  "github_repo": "my-project",
+  "db_name": "{{ cookiecutter.github_repo.replace('-', '_') }}",
+  "dir_name": "{{ cookiecutter.github_repo }}",
+  "short_description": "A short description"
+}
