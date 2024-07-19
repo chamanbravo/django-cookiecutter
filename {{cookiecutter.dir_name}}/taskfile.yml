@@ -3,8 +3,8 @@ version: "3"
 tasks:
   build:
     cmds:
-      - docker build . -t ghcr.io/{{cookiecutter.github_repo}}/{{cookiecutter.github_repo}}
+      - docker build . -t ghcr.io/{{cookiecutter.github_username}}/{{cookiecutter.github_repo}}
 
   publish:
     cmds:
-      - docker image push ghcr.io/{{cookiecutter.github_repo}}/{{cookiecutter.github_repo}}
+      - docker image push ghcr.io/{{cookiecutter.github_username}}/{{cookiecutter.github_repo}}
