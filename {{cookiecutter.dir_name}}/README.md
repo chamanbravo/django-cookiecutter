@@ -4,6 +4,12 @@
 
 ## Run Locally using Docker
 
+1. Change directory to `backend`.
+
+```
+cd backend
+```
+
 1. Run a postgres server on port 5432, if you haven't already.
 
 ```
