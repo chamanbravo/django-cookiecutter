@@ -1,5 +1,5 @@
 Django
-django-stubs
+django-types
 django-stubs-ext
 gunicorn
 psycopg2-binary
