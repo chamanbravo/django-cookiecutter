@@ -11,6 +11,8 @@ line-length = 79
 preview = true
 
 [tool.pyright]
+venvPath = "."
+venv = "venv"
 typeCheckingMode = "strict"
 executionEnvironments = [{ root = "backend" }]
 include = ["backend"]
