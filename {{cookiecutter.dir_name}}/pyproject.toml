@@ -9,6 +9,8 @@ force_single_line = true
 force-exclude = '/(migrations)/'
 line-length = 79
 preview = true
+enable-unstable-feature = ["string_processing"]
+
 
 [tool.pyright]
 venvPath = "."
