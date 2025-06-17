@@ -22,10 +22,26 @@ from project.env import ENV
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ENV.SECRET_KEY
+SECRET_KEY_INSECURE = (
+    "django-insecure-%4j4#)&a52nibu#6&xyfi12@-tlrs4lgr&+vu46d+^r&dei1(u"
+)
+if ENV.SECRET_KEY_FILE:
+    secret_key = Path(ENV.SECRET_KEY_FILE).read_text().strip()
+else:
+    secret_key = ENV.SECRET_KEY
+
+SECRET_KEY = secret_key
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = ENV.DEBUG
+
+if ENV.ENCRYPTION_KEY_FILE:
+    encryption_key = Path(ENV.ENCRYPTION_KEY_FILE).read_text().strip()
+else:
+    encryption_key = ENV.ENCRYPTION_KEY
+ENCRYPTION_KEY = encryption_key
+
 
 # Production configuration
 if not ENV.DEBUG:
@@ -84,13 +100,18 @@ WSGI_APPLICATION = "project.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+if ENV.POSTGRES_PASS_FILE:
+    password = Path(ENV.POSTGRES_PASS_FILE).read_text().strip()
+else:
+    password = ENV.POSTGRES_PASSWORD
+
 
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": ENV.POSTGRES_DB,
         "USER": ENV.POSTGRES_USER,
-        "PASSWORD": ENV.POSTGRES_PASSWORD,
+        "PASSWORD": password,
         "HOST": ENV.POSTGRES_HOST,
         "PORT": ENV.POSTGRES_PORT,
     }
