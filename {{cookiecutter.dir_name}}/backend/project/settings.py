@@ -22,11 +22,8 @@ from project.env import ENV
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY_INSECURE = (
-    "django-insecure-%4j4#)&a52nibu#6&xyfi12@-tlrs4lgr&+vu46d+^r&dei1(u"
-)
 if ENV.SECRET_KEY_FILE:
-    secret_key = Path(ENV.SECRET_KEY_FILE).read_text().strip()
+    secret_key = ENV.SECRET_KEY_FILE.read_text().strip()
 else:
     secret_key = ENV.SECRET_KEY
 
@@ -93,8 +90,8 @@ WSGI_APPLICATION = "project.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-if ENV.POSTGRES_PASS_FILE:
-    password = Path(ENV.POSTGRES_PASS_FILE).read_text().strip()
+if ENV.POSTGRES_PASSWORD_FILE:
+    password = ENV.POSTGRES_PASSWORD_FILE.read_text().strip()
 else:
     password = ENV.POSTGRES_PASSWORD
 
