@@ -36,13 +36,6 @@ SECRET_KEY = secret_key
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = ENV.DEBUG
 
-if ENV.ENCRYPTION_KEY_FILE:
-    encryption_key = Path(ENV.ENCRYPTION_KEY_FILE).read_text().strip()
-else:
-    encryption_key = ENV.ENCRYPTION_KEY
-ENCRYPTION_KEY = encryption_key
-
-
 # Production configuration
 if not ENV.DEBUG:
     SESSION_COOKIE_SECURE = True
