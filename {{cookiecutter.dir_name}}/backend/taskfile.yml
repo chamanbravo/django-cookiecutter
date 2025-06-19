@@ -1,14 +1,6 @@
 version: "3"
 
 tasks:
-  run:
-    cmds:
-      - docker run --net host ghcr.io/{{cookiecutter.github_username}}/{{cookiecutter.github_repo}}
-
-  run-db:
-    cmds:
-      - docker run --net host -d -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB={{cookiecutter.db_name}} postgres
-
   build:
     cmds:
       - docker build . -t ghcr.io/{{cookiecutter.github_username}}/{{cookiecutter.github_repo}}
