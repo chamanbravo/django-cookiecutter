@@ -1,3 +1,21 @@
+[project]
+name = "django-cookiecutter"
+version = "1.0.0"
+requires-python = ">=3.11"
+dependencies = [
+    "Django",
+    "django-types",
+    "django-stubs-ext",
+    "gunicorn",
+    "psycopg2-binary",
+    "pydantic",
+    "pydantic-settings",
+    "whitenoise",
+]
+
+[project.optional-dependencies]
+pre-commit = ["pre-commit"]
+
 [tool.isort]
 profile = "black"
 src_paths = ["backend"]
