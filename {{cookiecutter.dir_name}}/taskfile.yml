@@ -1,6 +1,11 @@
 version: "3"
 
 tasks:
+  sample-env:
+    cmds:
+      - sample-env env.Environment
+    dir: backend
+
   build:
     cmds:
       - docker build . -t ghcr.io/{{cookiecutter.github_username}}/{{cookiecutter.github_repo}}

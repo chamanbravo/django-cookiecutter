@@ -20,13 +20,6 @@ jobs:
           python-version: "3.11"
           cache: "pip"
 
-      - name: Cache Python virtual environment
-        id: cache-venv
-        uses: actions/cache@v3
-        with:
-          path: venv
-          key: venv-${{ runner.os }}-${{ hashFiles('uv.lock') }}
-
       - name: Cache pre-commit
         uses: actions/cache@v3
         with:
@@ -34,14 +27,11 @@ jobs:
           key: pre-commit-${{ runner.os }}-${{ hashFiles('.pre-commit-config.yaml') }}
 
       - name: Install project dependencies for pyright check
-        if: steps.cache-venv.outputs.cache-hit != 'true'
-        env:
-          UV_PROJECT_ENVIRONMENT: venv
         run: |
           pip install uv
-          uv sync --extra pre-commit
+          uv sync --extra pre-commit --frozen
 
       - name: Run pre-commit hooks
         run: |
-          source venv/bin/activate
+          source .venv/bin/activate
           pre-commit run --all-files
